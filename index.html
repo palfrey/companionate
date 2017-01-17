@@ -94,8 +94,8 @@
                 $(".make-code-nav").click(function() {
                     nav("#make-code");
                 });
-                $("#username").keyup(regenerateTextarea);
-                $("#password").keyup(regenerateTextarea);
+                $("#username").bind("input propertychange", regenerateTextarea);
+                $("#password").bind("input propertychange", regenerateTextarea);
                 if (window.location.hash) {
                     nav(window.location.hash);
                 }
