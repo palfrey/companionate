@@ -1,0 +1,1 @@
+./node_modules/.bin/html-beautify -r -o index.html
