@@ -51,7 +51,7 @@
                     <input type="password" class="form-control" placeholder="Password" aria-describedby="password-addon"
                         id="password">
                 </div>
-                <canvas id="qr-generate"></canvas>
+                <canvas id="qr-generate" class="img-fluid" style="margin: auto; display: block;"></canvas>
             </div>
         </div>
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
@@ -82,7 +82,7 @@
                     const qr = new QRious({
                         element: document.getElementById('qr-generate'),
                         value: JSON.stringify(info),
-                        size: 300
+                        size: Math.min(window.innerWidth, window.innerHeight) - 64
                     })
                 }
 
