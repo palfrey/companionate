@@ -1,0 +1,19 @@
+{
+  "name": "password-qr",
+  "version": "0.0.1",
+  "description": "Password sharing tool using QR codes",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "keywords": [
+    "qr",
+    "password",
+    "share"
+  ],
+  "author": "Tom Parker <palfrey@tevp.net>",
+  "license": "AGPL3",
+  "devDependencies": {
+    "bower": "^1.8.0"
+  }
+}
