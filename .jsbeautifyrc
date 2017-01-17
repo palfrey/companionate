@@ -1,4 +1,5 @@
 {
     "extra_liners": [],
-    "indent_inner_html": true
+    "indent_inner_html": true,
+    "wrap_line_length": 100
 }
