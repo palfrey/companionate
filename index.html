@@ -51,13 +51,13 @@
                     <input type="password" class="form-control" placeholder="Password" aria-describedby="password-addon"
                         id="password">
                 </div>
-                <textarea readonly cols="100" id="json-output">
-                </textarea>
+                <canvas id="qr-generate"></canvas>
             </div>
         </div>
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
         <script src="./bower_components/tether/dist/js/tether.min.js"></script>
         <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./bower_components/qrious/dist/umd/qrious.js"></script>
         <script>
             $(function() {
                 var sections = ["#home", "#make-code"]
@@ -79,8 +79,11 @@
                         "username": $("#username").val(),
                         "password": $("#password").val(),
                     };
-                    console.log(info);
-                    $("#json-output").text(JSON.stringify(info));
+                    const qr = new QRious({
+                        element: document.getElementById('qr-generate'),
+                        value: JSON.stringify(info),
+                        size: 300
+                    })
                 }
 
                 $(".home-nav").click(function() {
