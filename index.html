@@ -13,15 +13,15 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 </button>
-                <a class="navbar-brand home-nav" href="#">QR</a>
+                <a class="navbar-brand home-nav" href="#home">QR</a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link make-code-nav" href="#">Make Code</a>
+                            <a class="nav-link make-code-nav" href="#make-code">Make Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link use-code-nav" href="#">Use code</a>
+                            <a class="nav-link use-code-nav" href="#use-code">Use code</a>
                         </li>
                     </ul>
                 </div>
@@ -32,7 +32,7 @@
                     <h1>QR Login transfer tool</h1>
                     <p>Either use this to provide a QR code for an existing login, or to convert one of
                         those codes into a login</p>
-                    <p><a class="btn btn-primary btn-lg make-code-nav" href="" role="button">Make code</a></p>
+                    <p><a class="btn btn-primary btn-lg make-code-nav" href="#make-code" role="button">Make code</a></p>
                 </div>
             </div>
         </div>
@@ -48,24 +48,28 @@
         <script src="./bower_components/tether/dist/js/tether.min.js"></script>
         <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script>
-            var sections = ["#home", "#make-code"]
+            $(function() {
+                var sections = ["#home", "#make-code"]
 
-            function nav(section_name) {
-                sections.forEach(function(section) {
-                    if (section != section_name) {
-                        $(section).addClass("hidden");
-                    }
+                function nav(section_name) {
+                    sections.forEach(function(section) {
+                        if (section != section_name) {
+                            $(section).addClass("hidden");
+                        }
+                    });
+                    $(section_name).removeClass("hidden");
+                }
+
+                $(".home-nav").click(function() {
+                    nav("#home");
                 });
-                $(section_name).removeClass("hidden");
-            }
-            $(".home-nav").click(function() {
-                nav("#home");
-                return false;
-            });
 
-            $(".make-code-nav").click(function() {
-                nav("#make-code");
-                return false;
+                $(".make-code-nav").click(function() {
+                    nav("#make-code");
+                });
+                if(window.location.hash) {
+                    nav(window.location.hash);
+                }
             });
         </script>
     </body>
