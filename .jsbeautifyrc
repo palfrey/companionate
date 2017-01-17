@@ -1,5 +1,7 @@
 {
-    "extra_liners": [],
-    "indent_inner_html": true,
-    "wrap_line_length": 100
+    "html": {
+        "extra_liners": [],
+        "indent_inner_html": true,
+        "wrap_line_length": 100
+    }
 }
