@@ -42,6 +42,17 @@
                     <h1>QR Code Login generator</h1>
                     <p>Make login code</p>
                 </div>
+                <div class="input-group mb-1">
+                    <span class="input-group-addon" id="username-addon">Username</span>
+                    <input type="text" class="form-control" placeholder="Username" aria-describedby="username-addon" id="username">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="password-addon">Password</span>
+                    <input type="password" class="form-control" placeholder="Password" aria-describedby="password-addon"
+                        id="password">
+                </div>
+                <textarea readonly cols="100" id="json-output">
+                </textarea>
             </div>
         </div>
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
@@ -58,6 +69,18 @@
                         }
                     });
                     $(section_name).removeClass("hidden");
+                    if (section_name == "#make-code") {
+                        regenerateTextarea();
+                    }
+                }
+
+                function regenerateTextarea() {
+                    var info = {
+                        "username": $("#username").val(),
+                        "password": $("#password").val(),
+                    };
+                    console.log(info);
+                    $("#json-output").text(JSON.stringify(info));
                 }
 
                 $(".home-nav").click(function() {
@@ -67,7 +90,9 @@
                 $(".make-code-nav").click(function() {
                     nav("#make-code");
                 });
-                if(window.location.hash) {
+                $("#username").keyup(regenerateTextarea);
+                $("#password").keyup(regenerateTextarea);
+                if (window.location.hash) {
                     nav(window.location.hash);
                 }
             });
