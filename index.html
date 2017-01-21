@@ -28,7 +28,7 @@
                     </ul>
                 </div>
         </nav>
-        <div id="home">
+        <div id="home-nav">
             <div class="jumbotron">
                 <div class="container">
                     <h1>QR Login transfer tool</h1>
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div id="make-code" class="hidden">
+        <div id="make-code-nav" class="hidden">
             <div class="jumbotron">
                 <div class="container">
                     <h1>QR Code Login generator</h1>
@@ -56,7 +56,7 @@
                 <canvas id="qr-generate" class="img-fluid" style="margin: auto; display: block;"></canvas>
             </div>
         </div>
-        <div id="use-code" class="hidden">
+        <div id="use-code-nav" class="hidden">
             <script type="text/javascript" src="./zxing-cpp-emscripten/build/zxing.js"></script>
             <div id="lastScanned"></div>
             <div id="scanned"></div>
@@ -75,10 +75,10 @@
                 function nav(section_name) {
                     sections.forEach(function(section) {
                         if (section != section_name) {
-                            $(section).addClass("hidden");
+                            $(section+"-nav").addClass("hidden");
                         }
                     });
-                    $(section_name).removeClass("hidden");
+                    $(section_name+"-nav").removeClass("hidden");
                     if (section_name == "#make-code") {
                         regenerateTextarea();
                     }
