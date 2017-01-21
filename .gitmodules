@@ -1,3 +1,3 @@
 [submodule "zxing-cpp-emscripten"]
 	path = zxing-cpp-emscripten
-	url = git@github.com:kig/zxing-cpp-emscripten.git
+	url = https://github.com/kig/zxing-cpp-emscripten.git
