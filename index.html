@@ -8,6 +8,7 @@
                 display: none;
             }
         </style>
+        <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -55,13 +56,21 @@
                 <canvas id="qr-generate" class="img-fluid" style="margin: auto; display: block;"></canvas>
             </div>
         </div>
-        <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+        <div id="use-code" class="hidden">
+            <script type="text/javascript" src="./zxing-cpp-emscripten/build/zxing.js"></script>
+            <div id="lastScanned"></div>
+            <div id="scanned"></div>
+            <script type="text/javascript" src="./webcam.js"></script>
+            <div id="message"></div>
+            <canvas width="640" height="480" id="qrCanvas"></canvas>
+            <video style="display:none" autoplay id="webcamVideo"></video>
+        </div>
         <script src="./bower_components/tether/dist/js/tether.min.js"></script>
         <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="./bower_components/qrious/dist/umd/qrious.js"></script>
         <script>
             $(function() {
-                var sections = ["#home", "#make-code"]
+                var sections = ["#home", "#make-code", "#use-code"]
 
                 function nav(section_name) {
                     sections.forEach(function(section) {
@@ -72,6 +81,13 @@
                     $(section_name).removeClass("hidden");
                     if (section_name == "#make-code") {
                         regenerateTextarea();
+                    }
+                    if (section_name == "#use-code") {
+                        webCamActive = true;
+                        startZXing();
+                    }
+                    else {
+                        webCamActive = false;
                     }
                 }
 
@@ -93,6 +109,9 @@
 
                 $(".make-code-nav").click(function() {
                     nav("#make-code");
+                });
+                $(".use-code-nav").click(function() {
+                    nav("#use-code");
                 });
                 $("#username").bind("input propertychange", regenerateTextarea);
                 $("#password").bind("input propertychange", regenerateTextarea);
