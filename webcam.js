@@ -55,6 +55,7 @@ function runZXing() {
 		video.src = window.URL.createObjectURL(stream);
 		video.onclick = function() { video.play(); };
 		video.play();
+		scanned.innerHTML = "Can't find a QR Code"
 
 		var decodeCallback = function(ptr, len, resultIndex, resultCount) {
 			var result = new Uint8Array(zxing.HEAPU8.buffer, ptr, len);
@@ -106,11 +107,8 @@ function runZXing() {
 			}
 
 			var err = zxing._decode_qr_multi(decodePtr);
-			if (err) {
-				scanned.innerHTML = "Can't find a QR Code";
-			}
-			else {				
-				lastScanned.innerHTML = scanned.innerHTML = window.resultString;
+			if (!err) {
+				scanned.innerHTML = scanned.innerHTML = window.resultString;
 			}
 
 			//console.timeEnd('a')
