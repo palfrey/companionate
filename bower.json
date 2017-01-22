@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
-    "qrious": "^2.2.0"
+    "qrious": "^2.2.0",
+    "clipboard": "^1.5.16"
   }
 }

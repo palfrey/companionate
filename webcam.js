@@ -3,11 +3,18 @@ var last = Date.now();
 var DEBUG = 0;
 var webCamActive = true;
 var zxing = null;
+var clipboard = null;
 
 var startZXing = function() {
 	if (zxing == null) {
 		zxing = ZXing();
 	}
+	clipboard = new Clipboard('.copy',
+	{
+		text: function(trigger) {
+			return $(trigger).data("clipboardText"); // so we can change it dynamically
+		}
+	});
 	runZXing();
 };
 
@@ -55,7 +62,8 @@ function runZXing() {
 		video.src = window.URL.createObjectURL(stream);
 		video.onclick = function() { video.play(); };
 		video.play();
-		scanned.innerHTML = "Can't find a QR Code"
+		var noQrCode = document.getElementById("noQrCode");
+		var outputFields = document.getElementById("outputFields");
 
 		var decodeCallback = function(ptr, len, resultIndex, resultCount) {
 			var result = new Uint8Array(zxing.HEAPU8.buffer, ptr, len);
@@ -63,7 +71,7 @@ function runZXing() {
 			if (resultIndex === 0) {
 				window.resultString = '';
 			}
-			window.resultString += str + '<br>';
+			window.resultString += str;
 		};
 		var decodePtr = zxing.Runtime.addFunction(decodeCallback);
 
@@ -72,6 +80,7 @@ function runZXing() {
 				console.log("Inactive webcam");
 				var track = stream.getTracks()[0];
 				track.stop();
+				clipboard.destroy();
                 return;
 			}
 			requestAnimationFrame(getFrame);
@@ -108,10 +117,16 @@ function runZXing() {
 
 			var err = zxing._decode_qr_multi(decodePtr);
 			if (!err) {
-				scanned.innerHTML = scanned.innerHTML = window.resultString;
+				$(noQrCode).addClass("hidden");
+				$(outputFields).removeClass("hidden")
+				let jsonObject = JSON.parse(window.resultString);
+				if ("username" in jsonObject) {
+					document.getElementById("username-output").value = jsonObject["username"];
+				}
+				if ("password" in jsonObject) {
+					$("#password-output-copy").data("clipboardText", jsonObject["password"]);
+				}
 			}
-
-			//console.timeEnd('a')
 		}
 		getFrame();
 	};

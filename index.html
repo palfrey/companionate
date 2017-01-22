@@ -9,6 +9,7 @@
             }
         </style>
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="./bower_components/clipboard/dist/clipboard.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
@@ -58,11 +59,36 @@
         </div>
         <div id="use-code-nav" class="hidden">
             <script type="text/javascript" src="./zxing-cpp-emscripten/build/zxing.js"></script>
-            <div id="scanned"></div>
             <script type="text/javascript" src="./webcam.js"></script>
-            <div id="message"></div>
-            <canvas width="640" height="480" id="qrCanvas"></canvas>
-            <video style="display:none" autoplay id="webcamVideo"></video>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>QR Code Login reader</h1>
+                    <div class="row">
+                        <div class="col">
+                            <canvas width="640" height="480" id="qrCanvas"></canvas>
+                            <video style="display:none" autoplay id="webcamVideo"></video>
+                        </div>
+                        <div class="col">
+                            <div id="noQrCode">
+                                Haven't seen a QR code yet
+                            </div>
+                            <div id="outputFields" class="hidden">
+                                Login from last QR Code
+                                <div class="input-group mb-1">
+                                    <span class="input-group-addon" id="username-addon-output">Username</span>
+                                    <input type="text" class="form-control" placeholder="" aria-describedby="username-addon-output" id="username-output"
+                                        readonly>
+                                        <button class="copy input-group-addon" id="username-addon-copy" data-clipboard-target="#username-output">Copy</span>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="password-addon-output">Password</span>
+                                    <button class="copy input-group-addon" id="password-output-copy">Copy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="./bower_components/tether/dist/js/tether.min.js"></script>
         <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -74,18 +100,17 @@
                 function nav(section_name) {
                     sections.forEach(function(section) {
                         if (section != section_name) {
-                            $(section+"-nav").addClass("hidden");
+                            $(section + "-nav").addClass("hidden");
                         }
                     });
-                    $(section_name+"-nav").removeClass("hidden");
+                    $(section_name + "-nav").removeClass("hidden");
                     if (section_name == "#make-code") {
                         regenerateTextarea();
                     }
                     if (section_name == "#use-code") {
                         webCamActive = true;
                         startZXing();
-                    }
-                    else {
+                    } else {
                         webCamActive = false;
                     }
                 }
