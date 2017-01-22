@@ -21,7 +21,7 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 </button>
-                <a class="navbar-brand home-nav" href="#home">QR</a>
+                <a class="navbar-brand home-nav" href="#home">Companionate</a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
@@ -37,9 +37,18 @@
         <div id="home-nav">
             <div class="jumbotron">
                 <div class="container">
-                    <h1>QR Login transfer tool</h1>
-                    <p>Either use this to provide a QR code for an existing login, or to convert one of
-                        those codes into a login</p>
+                    <h1>Companionate</h1>
+                    <p>Companionate allows you to solve the problem of logging into a machine you don't
+                        have your password manager authenticated on by letting you enter the details
+                        on a device with the password manager on, and then use QR codes to transfer the
+                        information
+                    </p>
+                    <ol>
+                        <li>Load "Make code" on your device with the password manager and enter the login</li>
+                        <li>Load "Use code" page on the other machine, and scan in the QR code from your
+                            device
+                        </li>
+                    </ol>
                     <p>
                         <a class="btn btn-primary btn-lg make-code-nav" href="#make-code" role="button">Make code</a>
                         <a class="btn btn-primary btn-lg use-code-nav" href="#use-code" role="button">Use code</a>
@@ -51,7 +60,7 @@
             <div class="jumbotron">
                 <div class="container">
                     <h1>QR Code Login generator</h1>
-                    <p>Make login code</p>
+                    <p>Enter login details</p>
                 </div>
                 <div class="input-group mb-1">
                     <span class="input-group-addon" id="username-addon">Username</span>
@@ -78,10 +87,10 @@
                         </div>
                         <div class="col">
                             <div id="noQrCode">
-                                Haven't seen a QR code yet
+                                Haven't seen a QR code yet. Try holding up a device with the "Make code" page loaded.
                             </div>
                             <div id="outputFields" class="hidden">
-                                Login from last QR Code
+                                Details from last QR Code scanned
                                 <div class="input-group mb-1">
                                     <span class="input-group-addon" id="username-addon-output">Username</span>
                                     <input type="text" class="form-control" placeholder="" aria-describedby="username-addon-output" id="username-output"
@@ -90,6 +99,8 @@
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon" id="password-addon-output">Password</span>
+                                    <input type="password" class="form-control" placeholder="*********" aria-describedby="username-addon-output" id="username-output"
+                                        readonly>
                                     <button class="copy input-group-addon" id="password-output-copy">Copy</span>
                                 </div>
                             </div>
@@ -98,6 +109,15 @@
                 </div>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">
+                    Privacy policy: I don't store anything you enter here, but Github might.
+                     <abbr title="Read The Friendly Source">RTFS</abbr> or
+                     <a href="https://github.com/palfrey/companionate">run your own</a> if you're worrying.
+                </p>
+            </div>
+        </footer>
         <script src="./bower_components/tether/dist/js/tether.min.js"></script>
         <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="./bower_components/qrious/dist/umd/qrious.js"></script>
