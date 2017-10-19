@@ -1,5 +1,6 @@
 var image;
 var last = Date.now();
+var lastTaken = null;
 var DEBUG = 0;
 var webCamActive = true;
 var zxing = null;
@@ -121,6 +122,7 @@ function runZXing() {
 				$(noQrCode).addClass("hidden");
 				$(outputFields).removeClass("hidden")
 				let jsonObject = JSON.parse(window.resultString);
+				lastTaken = humanize.time();
 				if ("username" in jsonObject) {
 					document.getElementById("username-output").value = jsonObject["username"];
 				}
@@ -132,3 +134,10 @@ function runZXing() {
 		getFrame();
 	};
 };
+
+function setSince() {
+	document.getElementById("date").innerHTML = " (" + humanize.relativeTime(lastTaken) + ")";
+	setTimeout(setSince, 1000);
+}
+
+setTimeout(setSince, 1000);

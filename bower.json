@@ -23,6 +23,7 @@
     "bootstrap": "4.0.0-alpha.6",
     "qrious": "^2.2.0",
     "clipboard": "^1.5.16",
-    "github-fork-ribbon-css": "https://github.com/simonwhitaker/github-fork-ribbon-css.git#5af97abd76cf981bece219188ee819e62035de7e"
+    "github-fork-ribbon-css": "https://github.com/simonwhitaker/github-fork-ribbon-css.git#5af97abd76cf981bece219188ee819e62035de7e",
+    "humanize": "^0.0.9"
   }
 }
