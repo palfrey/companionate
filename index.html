@@ -14,6 +14,7 @@
         <![endif]-->
         <script src="./bower_components/jquery/dist/jquery.min.js"></script>
         <script src="./bower_components/clipboard/dist/clipboard.min.js"></script>
+        <script src="./bower_components/humanize/humanize.js"></script>
     </head>
     <body>
         <a class="github-fork-ribbon right-top" href="https://github.com/palfrey/companionate" title="Fork me on GitHub">Fork me on GitHub</a>
@@ -90,7 +91,7 @@
                                 Haven't seen a QR code yet. Try holding up a device with the "Make code" page loaded.
                             </div>
                             <div id="outputFields" class="hidden">
-                                Details from last QR Code scanned
+                                Details from last QR Code scanned<span id="date"></span>
                                 <div class="input-group mb-1">
                                     <span class="input-group-addon" id="username-addon-output">Username</span>
                                     <input type="text" class="form-control" placeholder="" aria-describedby="username-addon-output" id="username-output"
