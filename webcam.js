@@ -48,10 +48,12 @@ function runZXing() {
 		}
 	};
 
-	if (navigator.getUserMedia) {
+	if (navigator.mediaDevices.getUserMedia) {
+		navigator.mediaDevices.getUserMedia(hdConstraints).then(success).catch(errorCallback);
+	} else if (navigator.getUserMedia) {
 		navigator.getUserMedia(hdConstraints, success, errorCallback);
 	} else {
-		errorCallback('');
+		errorCallback('No getUserMedia');
 	}
 
 	function errorCallback(e) {
