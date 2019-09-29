@@ -56,7 +56,14 @@ function runZXing() {
 
 	function errorCallback(e) {
 		$( "#qrCanvas" ).replaceWith( "<h3>Can't access webcam. You might not have one!</h3>" );
-		console.log("Can't access user media", e);
+		var exmsg = "";
+		if (e.message) {
+			exmsg += e.message;
+		}
+		if (e.stack) {
+			exmsg += ' | stack: ' + e.stack;
+		}
+		console.log("Can't access user media:", exmsg);
 	}
 
 	function success(stream) {
