@@ -115,7 +115,6 @@ function runZXing() {
 			}
 
 			log('interval')
-			console.time('a')
 			ctx.drawImage(video, 0, 0, width, height);
 			var imageData = ctx.getImageData(0,0, width, height);
 			data = imageData.data;
