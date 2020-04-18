@@ -30,8 +30,8 @@ Developing
 I've copied various of the dependencies manually in, but you should
 have a full install for local dev.
 
-1. Install [Node and npm](https://docs.npmjs.com/getting-started/installing-node)
-2. `npm install`
+1. Install [Node](https://docs.npmjs.com/getting-started/installing-node) and [Yarn](https://classic.yarnpkg.com/en/docs/install/)
+2. `yarn install`
 3. `rm -Rf bower_components` (to get rid of the manually added items)
 3. `./node_modules/.bin/bower install`
 
